@@ -59,9 +59,10 @@ import com.vanniktech.maven.publish.SonatypeHost
 allprojects {
     plugins.withId(libs.plugins.vanniktechPublish.get().pluginId) {
         mavenPublishing {
+            configureBasedOnAppliedPlugins()
             publishToMavenCentral(SonatypeHost.S01)
 
-            signAllPublications()
+//            signAllPublications()
         }
     }
 }
