@@ -1,8 +1,10 @@
 plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
+    alias(libs.plugins.androidLib)
+    alias(libs.plugins.kotlinAndroid)
     id 'filament-tools-plugin'
-    id 'org.jetbrains.dokka'
+    alias(libs.plugins.dokka)
+    alias(libs.plugins.kotlinCompose)
+    alias(libs.plugins.vanniktechPublish)
 }
 
 // *************************************************************************************************
@@ -72,9 +74,6 @@ android {
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.14"
-    }
     // Preserve compression of filament files
     androidResources {
         noCompress 'filamat', 'ktx'
@@ -86,8 +85,8 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:1.7.1"
 
     // Compose
-    implementation "androidx.compose.ui:ui:1.6.7"
-    implementation "androidx.compose.foundation:foundation:1.6.7"
+    implementation "androidx.compose.ui:ui"
+    implementation "androidx.compose.foundation:foundation"
 
     // kotlin-math
     api 'dev.romainguy:kotlin-math:1.5.3'
@@ -103,5 +102,3 @@ dependencies {
     implementation "com.github.kittinunf.fuel:fuel-android:2.3.1"
     implementation "com.github.kittinunf.fuel:fuel-coroutines:2.3.1"
 }
-
-apply plugin: "com.vanniktech.maven.publish"

@@ -1,0 +1,17 @@
+[versions]
+agp="8.7.0"
+arCore ="1.46.0"
+kotlin="2.0.20"
+
+[libraries]
+
+androidx-composeBom = { module = "androidx.compose:compose-bom", version = "2024.09.03" }
+arCore = { module = "com.google.ar:core", version.ref = "arCore" }
+
+[plugins]
+androidApp = { id = "com.android.application", version.ref = "agp" }
+androidLib = { id = "com.android.library", version.ref = "agp" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlinCompose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+dokka = { id = "org.jetbrains.dokka", version = "2.0.0-Beta" }
+vanniktechPublish = { id = "com.vanniktech.maven.publish", version = "0.29.0"}

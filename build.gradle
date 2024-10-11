@@ -1,20 +1,11 @@
-buildscript {
-    ext.kotlin_version = '1.9.24'
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:8.7.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.24"
-        // Maven Central Publish
-        classpath "com.vanniktech:gradle-maven-publish-plugin:0.25.3"
-        // Dokka
-        classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.9.10"
-    }
+plugins {
+    alias(libs.plugins.androidApp) apply false
+    alias(libs.plugins.androidLib) apply false
+    alias(libs.plugins.vanniktechPublish) apply false
+    alias(libs.plugins.kotlinAndroid) apply false
+    alias(libs.plugins.kotlinCompose) apply false
+    alias(libs.plugins.dokka)
 }
-
-apply plugin: 'org.jetbrains.dokka'
 
 //afterEvaluate {
 //    if (tasks.findByName('dokkaGfmPartial') == null) {
@@ -52,10 +43,21 @@ apply plugin: 'org.jetbrains.dokka'
 //    }
 //}
 
+
+subprojects {
+
+    // Add Compose BOM to all subprojects
+    plugins.withId("com.android.base") {
+        dependencies {
+            implementation(platform(libs.androidx.composeBom))
+        }
+    }
+}
+
 import com.vanniktech.maven.publish.SonatypeHost
 
 allprojects {
-    plugins.withId("com.vanniktech.maven.publish") {
+    plugins.withId(libs.plugins.vanniktechPublish.get().pluginId) {
         mavenPublishing {
             publishToMavenCentral(SonatypeHost.S01)
 
