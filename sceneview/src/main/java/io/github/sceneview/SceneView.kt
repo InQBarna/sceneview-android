@@ -13,7 +13,6 @@ import android.view.SurfaceView
 import android.view.WindowManager
 import android.widget.FrameLayout
 import androidx.activity.ComponentActivity
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.findFragment
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -1056,7 +1055,6 @@ open class SceneView @JvmOverloads constructor(
         )
 
 
-        @RequiresApi(Build.VERSION_CODES.P)
         fun createViewNodeManager(context: Context) = ViewNode2.WindowManager(context)
 
         fun createMainLightNode(engine: Engine): LightNode = DefaultLightNode(engine)
